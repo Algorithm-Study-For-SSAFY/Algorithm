@@ -1,0 +1,37 @@
+package Back;
+
+import java.util.Scanner;
+
+public class Main_백준_1072_게임 {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		Long X = sc.nextLong(); // 게임 횟수
+		Long Y = sc.nextLong(); // 이긴 게임
+
+		Long Z = Y * 100 / X; // 승률
+
+		if (Z >= 99) { // 승률이 99이상이면 -1
+			System.out.println(-1);
+		} else {
+
+			long low = 0;
+			long mid = 0;
+			long high = 1000000000;
+
+			while (low <= high) {
+				mid = (low + high) / 2;
+				if (Z < 100 * (Y + mid) / (X + mid)) { // mid 회 더 했을때 승률이 Z보다 크면 
+					high = mid - 1;
+
+				} else {
+					low = mid + 1;
+				}
+			}
+			System.out.println(low);
+		}
+
+	}// end of main
+
+}// end of class
