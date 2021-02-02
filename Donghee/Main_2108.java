@@ -2,7 +2,7 @@ package baekjoon;
 
 import java.util.Arrays;
 import java.util.Scanner;
-
+/* 최빈값 구하기 주의*/
 public class Main_2108 {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
@@ -32,7 +32,7 @@ public class Main_2108 {
 		//최대 빈도가 여러개일 경우를 가정하고, 2번째로 작은 값 구하기 위해 배열 생성
 		boolean flag=false;
 		for(int i=0; i<8001; i++) {
-			//이 때가 2번째로 작은 최빈값
+			//이 때가 2번째로 작은 최빈값, 더이상 진행할 필요 x
 			if(arr[i]==max && flag) {
 				avg3=i-4000; break;
 			}
