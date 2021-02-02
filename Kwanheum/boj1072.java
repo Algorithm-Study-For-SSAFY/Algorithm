@@ -8,31 +8,31 @@ public class boj1072 {
 		Y = sc.nextLong();
 		int first_Z =  (int) ((double) Y * 100 / X );
 		
-		//½Â·üÀÌ 99ÆÛ¼¾Æ®¶ó¸é Àı´ë º¯ÇÏÁö ¾Ê¾Æ ( 100ÆÛ·Î ¿Ã¶ó°¡´Â°Ô ºÒ°¡!)
+		//ìŠ¹ë¥ ì´ 99í¼ì„¼íŠ¸ë¼ë©´ ì ˆëŒ€ ë³€í•˜ì§€ ì•Šì•„ ( 100í¼ë¡œ ì˜¬ë¼ê°€ëŠ”ê²Œ ë¶ˆê°€!)
 		if( first_Z >= 99) {
 			System.out.println(-1);
 			return;
 		}
-		// Y <= X <=10¾ï,, ´õ ÇØ¾ßÇÏ´Â ÆÇ¼ö°¡ 10¾ïÀ» ³Ñ¾î°¡¸é? ¿À¹öÇÃ·Î¿ì³¯¼öµµ 
-		/*ÇØ´ç ÄÚµå·Î´Â ½Ã°£ÃÊ°ú ¹ß»ı
-		 * long cnt = 0;
-		int Z;
-		while(true) {
-			cnt++;
-			Z = (int) (((double) Y + cnt) * 100 / (X+cnt) );
-			if(Z != first_Z) {
-				System.out.println(cnt);
-				return;
-			}
-		}*/
-		
-		// ½Ã°£ÃÊ°ú¸¦ ±Øº¹ÇÏ±â À§ÇØ ÀÌºĞÅ½»ö Àû¿ë
+		// Y <= X <=10ì–µ,, ë” í•´ì•¼í•˜ëŠ” íŒìˆ˜ê°€ 10ì–µì„ ë„˜ì–´ê°€ë©´? ì˜¤ë²„í”Œë¡œìš°ë‚ ìˆ˜ë„ 
+				/*í•´ë‹¹ ì½”ë“œë¡œëŠ” ì‹œê°„ì´ˆê³¼ ë°œìƒ
+				 * long cnt = 0;
+				int Z;
+				while(true) {
+					cnt++;
+					Z = (int) (((double) Y + cnt) * 100 / (X+cnt) );
+					if(Z != first_Z) {
+						System.out.println(cnt);
+						return;
+					}
+				}*/
+				
+				// ì‹œê°„ì´ˆê³¼ë¥¼ ê·¹ë³µí•˜ê¸° ìœ„í•´ ì´ë¶„íƒìƒ‰ ì ìš©
 		long first = 0;
 		long last = Long.MAX_VALUE;
 		long mid = 0;
 		int Z;
 		while(first <= last) {
-			//long mid = (first + last) / 2; //´Ü¼ø ´õÇØ¼­ ³ª´©±âÇÏ¸é overflow °¡´É¼º
+			//long mid = (first + last) / 2; //ë‹¨ìˆœ ë”í•´ì„œ ë‚˜ëˆ„ê¸°í•˜ë©´ overflow ê°€ëŠ¥ì„±
 			mid = (last-first)/2 + first;
 			Z = (int) (((double) Y + mid) * 100 / (X+mid) );
 			if(Z > first_Z) {

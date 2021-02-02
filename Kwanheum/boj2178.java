@@ -12,7 +12,7 @@ public class boj2178 {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
 		M = sc.nextInt();
-		_map = new int[N+1][M+1]; //Àü¿ªº¯¼ö·Î ¸¸µé¸é, ¹İµå½Ã ÃÊ±âÈ­!
+		_map = new int[N+1][M+1];//ì „ì—­ë³€ìˆ˜ë¡œ ë§Œë“¤ë©´, ë°˜ë“œì‹œ ì´ˆê¸°í™”!
 		_chk = new boolean[N+1][M+1];
 		for(int i=1; i<=N; i++) {
 			String x = sc.next();
@@ -21,7 +21,7 @@ public class boj2178 {
 			}
 		}
 		
-		//(1,1) ¿¡¼­ (N,M)
+		//(1,1) ì—ì„œ (N,M)
 		int answer = BFS();
 		System.out.println(answer);
 	}
@@ -38,9 +38,9 @@ public class boj2178 {
 	}
 	
 	static int BFS() {
-		//(1,1)¿¡¼­ ½ÃÀÛ
+		//(1,1)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Queue<Pair> q = new LinkedList<>();
-		_chk[1][1] = true; //BFS¸¦ »ç¿ëÇÏ±â ¶§¹®¿¡, µÚ´Ê°Ô °°Àº °÷À» ¹æ¹®ÇÏ´Â°Ç ÀÇ¹Ì°¡ ¾øÀ¸¹Ç·Î Ã¼Å©.
+		_chk[1][1] = true; //BFSë¥¼ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì—, ë’¤ëŠ¦ê²Œ ê°™ì€ ê³³ì„ ë°©ë¬¸í•˜ëŠ”ê±´ ì˜ë¯¸ê°€ ì—†ìœ¼ë¯€ë¡œ ì²´í¬.
 		q.add(new Pair(1,1,1));
 		
 		while(!q.isEmpty()) {
@@ -48,7 +48,7 @@ public class boj2178 {
 			int row = p.r;
 			int col = p.c;
 			int cnt = p.cnt;
-			if(row==N && col==M) return cnt; //Á¾·á¹®
+			if(row==N && col==M) return cnt; //ì¢…ë£Œë¬¸
 			
 			for(int i=0; i<4; i++) {
 				int nr = row + mr[i];
