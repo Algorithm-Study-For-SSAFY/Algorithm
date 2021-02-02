@@ -1,0 +1,47 @@
+package Back;
+
+import java.util.Scanner;
+
+public class Main_백준_1316_그룹단어체커 {
+
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+
+		int N = sc.nextInt(); // 처음 입력 개수
+
+		int count = 0; // 그룹단어 개수
+
+		for (int i = 0; i < N; i++) { // 그룹함수 실행 맞으면 count
+			if (check() == true) {
+				count++;
+			}
+
+		}
+		System.out.println(count);
+	}
+
+	public static boolean check() { // 그룹함수인지 판단하는 함수
+		boolean[] check = new boolean[26]; // 알파벳 수 만큼 배열 만들기
+		int prev = 0; // 이전의 값
+		String nu = sc.next(); // 문자열 입력
+		for (int i = 0; i < nu.length(); i++) {
+			int now = nu.charAt(i); // 현재 문자 저장
+
+			if (prev != now) { // 문자 다를경우
+
+				if (check[now - 'a'] == false) {// 초기값이 false이므로, 문자가 처음나오는거면 true로 바꿔줌
+					check[now - 'a'] = true; // true로 바꿔줌
+					prev = now; // 처음나오는 값이다.
+				} else {
+					return false; // 처음나오는것이 아니먄 false
+				}
+			} else { // 문자가 같은경우
+				continue;
+			}
+		}
+		return true;
+
+	}
+
+}// end of class
