@@ -17,6 +17,7 @@ public class boj1316 {
 				char x = input.charAt(s);
 				if(before == x) {
 					//아무것도안함.
+					
 				}
 				else{
 					if( !chk[x-'a']) {
