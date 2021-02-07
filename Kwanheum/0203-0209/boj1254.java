@@ -7,8 +7,21 @@ public class boj1254 {
 		Scanner sc = new Scanner(System.in);
 		String x = sc.next();
 		int len = x.length();
-
-		/* Solution1. index로 처리해보기
+		/////////////////////////////////////////////////
+		// Solution3. isPal 함수 활용, 최적화
+		/////////////////////////////////////////////////
+		for(int i=0; i<len; i++) {
+			String a = x.substring(i);
+			if(isPal(a, a)) {// a가 팰린드롬인지 체크
+				System.out.println(len+i);
+				return;
+			} 
+		}
+		
+		/////////////////////////////////////////////////
+		// Solution1. index로 처리해보기
+		/////////////////////////////////////////////////
+		/*
 		 * if(len % 2 ==0) {
 			for(int i=len/2; i<len; i++) {
 				//중간선 기준 대칭 bbaa
@@ -59,7 +72,7 @@ public class boj1254 {
 		/////////////////////////////////////////////////
 		// Solution2. isPal 함수 활용하기
 		/////////////////////////////////////////////////
-		
+		/*
 		if(len % 2 == 0) {
 			//bbaa
 			//중간선 기준 대칭 먼저 , 중간값 기준 대칭
@@ -106,8 +119,8 @@ public class boj1254 {
 				}
 				
 			}
-		}
-		
+		}*/
+				
 		
 	} // main
 	static boolean isPal(String a, String b) {
