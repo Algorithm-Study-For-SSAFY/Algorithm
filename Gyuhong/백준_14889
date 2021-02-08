@@ -1,0 +1,98 @@
+
+//Main_백준_14889_스타트와 링크_조규홍
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+ 
+
+public class Main {
+	
+	static int N;
+	static int[][] synergy;
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		N = Integer.parseInt(br.readLine());
+		
+		
+		// 능력치를 저장할 배열
+		synergy = new int[N][N];
+		
+		for (int i = 0; i < N; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+			for (int j = 0; j < synergy.length; j++) {
+				synergy[i][j] = Integer.parseInt(st.nextToken());
+			}
+		}
+		
+		
+		// 재귀함수를 이용해 조합을 작성하기 위한 배열
+		int arr[] = new int[N/2];
+				
+		int answer = makeCombination(0, 0, arr);
+		
+		
+		System.out.println(answer);
+	}
+	
+	
+	// 조합을 만드는 메서드
+	static int makeCombination(int cnt, int start, int[] arr) {
+		int answer = Integer.MAX_VALUE;
+		
+		
+		// arr가 다 채워지면 getDif 메서드를 이용해서 능력치의 차이를 구하도록 한다.
+		if(cnt == N/2) {
+			answer = Math.min(getDif(arr), answer);
+			return answer;
+		}
+		
+		
+		// 조합을 만드는 반복문
+		for (int i = start+1; i < N; i++) {		
+			arr[cnt] = i; 
+			answer = Math.min(makeCombination(cnt+1, i, arr), answer);
+		}
+		
+		return answer;
+	}
+	
+	
+	static int getDif(int[] arr) {
+		int dif = 0;
+		
+		
+		// counter는 상대팀의 조합을 의미한다.
+		int[] counter = new int[N/2];
+		int arrIdx = 0;
+		int counterIdx = 0;
+		for (int i = 0; i < N; i++) {
+			if(arrIdx < N/2 && i != arr[arrIdx]) {
+				counter[counterIdx] = i;
+				counterIdx++;
+			}
+			else {
+				arrIdx++;
+			}
+		}
+		
+		//dif에 스타트 팀의 능력치를 더하고, 링크팀의 능력치를 뺀다.
+		for (int i = 0; i < N/2; i++) {
+			for (int j = 0; j < N/2; j++) {
+				dif += synergy[arr[i]][arr[j]];
+				dif -= synergy[counter[i]][counter[j]];
+			}
+		}
+		
+		// dif의 절댓값을 return 한다.
+		return Math.abs(dif);
+	}
+	
+}
+
+
+
