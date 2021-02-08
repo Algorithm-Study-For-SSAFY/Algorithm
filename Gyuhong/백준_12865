@@ -1,0 +1,52 @@
+//Main_백준_12865_평범한배낭_조규홍
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+ 
+
+public class Main {
+	
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		
+		int N = Integer.parseInt(st.nextToken());
+		int K = Integer.parseInt(st.nextToken());
+	
+		int max[] = new int[K+1];
+		Arrays.fill(max, -1);
+		max[0] = 0;
+		
+		for (int i = 0; i < N; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			int m = Integer.parseInt(st.nextToken());
+			int v = Integer.parseInt(st.nextToken());
+			
+			
+			for (int j = K; j >= m; j--) {
+				if(max[j-m] != -1) {
+					max[j] = Math.max(max[j-m]+v, max[j]);
+				}
+			}
+		}
+		
+		int maxWeight = 0;
+		
+		for (int i = 0; i < max.length; i++) {
+			maxWeight = Math.max(maxWeight, max[i]);
+		}
+		
+		System.out.println(maxWeight);
+		
+		
+	}
+}
+
+
+
