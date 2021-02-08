@@ -1,0 +1,103 @@
+//Main_백준_5430_AC_
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		
+		int T = Integer.parseInt(br.readLine());
+		
+		newTest : for (int testCase = 1; testCase <= T; testCase++) {
+			
+			String instruction = br.readLine();
+			int n = Integer.parseInt(br.readLine());
+			String arrayString = br.readLine();
+			arrayString = arrayString.substring(1, arrayString.length()-1);
+			
+			String[] numArrString = arrayString.split(",");
+			int[] numArr = new int[n];
+			
+			int point;
+			int start;
+			int end;
+			
+			if(n == 0) {
+				point = 0;
+				start = 0;
+				end = -1;
+			}
+			
+			else {
+				for (int i = 0; i < numArrString.length; i++) {
+					numArr[i] = Integer.parseInt(numArrString[i]); 
+				}
+				point = 0;
+				start = 0;
+				end = numArr.length - 1;
+			}
+			
+			
+			
+			// 다음 지울 idx를 point에 저장한다.
+			// 배열의 시작점을 start
+			// 끝점을 end에 저장한다.
+			// R 명령어가 나왔을 때는 배열을 뒤집지 않고 point만 이동한다.
+			for (char inst : instruction.toCharArray()) {
+				if(inst == 'R') {
+					point = point == start ? end : start;
+				}
+				else {
+					if(start > end) {
+						sb.append("error").append("\n");
+						continue newTest;
+					}
+					
+					else if(point == start){
+						point++;
+						start++;
+					}
+					else {
+						point--;
+						end--;
+					}
+				}
+			}
+			
+			sb.append("[");
+			
+			//정방향
+			if(point == start) {
+				for (int i = start; i <= end; i++) {
+					sb.append(numArr[i]);
+					if(i!=end)sb.append(",");
+				}
+			}
+			
+			
+			//역방향
+			else{
+				for (int i = end; i >= start; i--) {
+					sb.append(numArr[i]);
+					if(i!=start)sb.append(",");
+				}
+			}
+			
+			
+			sb.append("]").append("\n");
+		}
+		
+		
+		System.out.println(sb.toString());
+		
+		
+	}
+	
+}
+
+
+
