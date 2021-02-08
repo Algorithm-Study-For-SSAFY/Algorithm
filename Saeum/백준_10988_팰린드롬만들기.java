@@ -33,3 +33,7 @@ public class 백준_10988_팰린드롬만들기 {
 		return true;
 	}
 }
+
+
+// 이 문제가 아닌거 같은데요....?
+// https://www.acmicpc.net/problem/1254
