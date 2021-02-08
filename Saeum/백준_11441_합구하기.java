@@ -40,3 +40,5 @@ public class 백준_11441_합구하기 {
 		System.out.println(sb);
 	}
 }
+
+// 확인완료
