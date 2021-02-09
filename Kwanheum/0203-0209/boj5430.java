@@ -71,4 +71,4 @@ public class boj5430 {
 저는 substring은 알았는데 아이디어가 생각이 안났어서 검색해보다가 String에 있는 replace 메서드 사용해서 
 String s=br.readLine().replace("[", "").replace("]", ""); 이런식으로 해결했어요.
 혹시 모르시면 알아두시라고 남겨놔요~!
-/
+*/
