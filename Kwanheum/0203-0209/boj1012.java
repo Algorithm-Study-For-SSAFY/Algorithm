@@ -57,3 +57,6 @@ public class boj1012 {
 		return;
 	}
 }
+/**
+DFS의 정석적인 풀이 같습니다 ~ 깔끔해요~
+/
