@@ -72,3 +72,6 @@ public class Main_1012 {
 		}
 	} //end of bfs
 }//end of class
+
+
+//저는 그냥 막? 풀었는데 동희님처럼 queue 사용해서 bfs 로도 다시 풀어봐야겠어요 ! :)
