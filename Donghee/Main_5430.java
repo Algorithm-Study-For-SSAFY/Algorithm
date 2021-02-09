@@ -76,3 +76,5 @@ ex:			for(int i=0; i<str.length(); i++) {
 		System.out.println(sb.toString());
 	}//end of main
 }
+
+// replace 메서드를 사용한게 인상적이에요 ! 저도 다음에 사용해봐야겠어요 ㅎㅎ 
