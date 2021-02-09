@@ -37,3 +37,5 @@ public class Main_12865 {
 		System.out.println(dp[N][K]);
 	}//end of main
 }//end of class
+
+//저는 이 문제가 어려워서 풀지 못했어요 ㅠㅠ 동희님처럼 점화식을 이용한 간단한 문제였네요 다시 풀러가야겠어요 >_<
