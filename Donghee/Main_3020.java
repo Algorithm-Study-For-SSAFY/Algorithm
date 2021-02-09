@@ -47,3 +47,6 @@ public class Main_3020 {
 		System.out.println(answer + " "+ count);
 	}//end of main
 }
+
+// 저는 메모리 초과를 해결했더니 시간 초과가 발생해서 결국 반복하다가 포기했어요ㅠㅠㅠ
+// 어떻게 해야 해결할 수 있는 걸까요,
