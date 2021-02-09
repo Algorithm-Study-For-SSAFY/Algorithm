@@ -1,0 +1,84 @@
+//Main_백준_13549_숨바꼭질3_
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	
+	static Queue<Subin> q = new LinkedList<Subin>();
+	static int N;
+	static int K;
+	static int[] dp;
+	
+	public static void main(String[] args) throws IOException {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		N = sc.nextInt();
+		K = sc.nextInt();
+		
+		// 어떤 인덱스에 도달할때 걸리는 최솟값
+		dp = new int[100001];
+		Arrays.fill(dp, Integer.MAX_VALUE);
+		
+		// priority queue를 이용하여 BFS를 진행한다.
+		q.add(new Subin(N,0));
+		
+		
+		while(q.size() != 0) {
+			 bfs(q.peek().pos , q.poll().cost);
+		}
+		
+		System.out.println(dp[K]);
+		sc.close();
+	}
+	
+	static void bfs(int pos, int cost) {
+		
+		// dp에 저장된 값보다 cost가 크다면 의미가 없으므로 반환한다.
+		if(dp[pos] <= cost) {
+			return;
+		}
+		dp[pos] = cost;
+		
+		
+		if(pos == K) {
+			// K를 찾았으면 bfs를 더 진행할 이유가 없으므로 queue를 비운다.
+			q.clear();
+			return;
+		}
+
+		
+		if(pos*2 < 100001) {
+			q.add(new Subin(pos*2, cost));
+		}
+		
+		if(pos-1 >= 0) {
+			q.add(new Subin(pos-1, cost+1));
+		}
+		
+		if(pos < K && pos+1 <= 100000) {
+			q.add(new Subin(pos+1, cost+1));
+		}
+		
+	}
+	
+}
+
+
+class Subin implements Comparable<Subin>{
+	int cost;
+	int pos;
+	public Subin(int pos, int cost) {
+		super();
+		this.cost = cost;
+		this.pos = pos;
+	}
+	
+	@Override
+	public int compareTo(Subin o) {
+		return this.cost - o.cost;
+	}
+}
+
+
