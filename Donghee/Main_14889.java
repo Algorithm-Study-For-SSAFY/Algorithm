@@ -55,3 +55,6 @@ public class Main_14889 {
 		}
 	}
 }//end of class
+
+
+// 깔끔합니다 ! 
