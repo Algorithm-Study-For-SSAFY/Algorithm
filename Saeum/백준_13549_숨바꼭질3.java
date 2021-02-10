@@ -5,6 +5,11 @@ public class 백준_13549_숨바꼭질3 {
 
 	static int seconds[] = new int[100001];
 	static String dx[] = { "2 0", "1 -1", "1 1" };
+	
+	// str에 저장해서 사용하는 것은 처음 봤는데
+	// static int dx[][] = {{2,0},{1,-1},{1,1}} 로 하면,
+	// 나중에 split 이라던가 Integer.parseInt 같은 처리를 안해도 될꺼 같아요!
+	
 	static boolean visited[] = new boolean[100001];
 
 	public static void main(String[] args) throws Exception {
@@ -26,13 +31,15 @@ public class 백준_13549_숨바꼭질3 {
 		Queue<Integer> q = new LinkedList<>();
 		q.offer(start);
 		seconds[start] = 0;
-
+		
+		// 정답을 구한 이후에도 계속해서 q에 값이 들어가서 불필요한 계산이 많이 필요한거 같아요!
 		while (!q.isEmpty()) {
 			int cur = q.poll();
 			for (int i = 0; i < 3; i++) {
-				String str[] = dx[i].split(" ");
+				String str[] = dx[i].split(" "); 
 				int x = Integer.parseInt(str[0]) * cur + Integer.parseInt(str[1]) * 1;
-
+											// 여기 *1이 있는 이유는!?
+				
 				if (x < 0 || 100000 < x) {
 					continue;
 				}
