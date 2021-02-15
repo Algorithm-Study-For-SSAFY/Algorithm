@@ -1,0 +1,38 @@
+
+//Main_백준_14465_소가 길을 건너간 이유5_
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int N = sc.nextInt(); // 횡단보도 갯수
+		int K = sc.nextInt(); // 연속해야하는 신호등 갯수
+		int B = sc.nextInt(); // 고장난 신호등 갯수
+		
+		boolean[] path = new boolean[N+1];
+		Arrays.fill(path, true);
+		
+		for (int i = 0; i < B; i++) {
+			path[sc.nextInt()] = false;
+		}
+		
+		
+		int min = K;
+		int cnt;
+		for (int i = 1; i <= N-K+1; i++) {
+			cnt = 0;
+			for (int j = 0; j < K; j++) {
+				if(!path[i+j]) cnt++;
+			}
+			min = Math.min(min, cnt);
+		}
+		
+		System.out.println(min);
+		sc.close();
+	}
+}
