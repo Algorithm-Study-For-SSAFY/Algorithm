@@ -1,0 +1,73 @@
+
+//Main_백준_1068_트리_
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int N = Integer.parseInt(br.readLine());
+		
+		Node root = new Node(0,null);
+		
+		
+		Node[] node = new Node[N];
+		for (int i = 0; i < node.length; i++) {
+			node[i] = new Node(i,null);
+		}
+		
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		for (int c = 0; c < N; c++) {
+			int p = Integer.parseInt(st.nextToken()); // 부모 노드
+			
+			if(p >= 0) { // 부모가 root이 아닐 때
+				node[c].parent = node[p]; 
+				node[p].child.add(node[c]);				
+			}
+			else { // 부모가 root 일때
+				node[c].parent = root;
+				root.child.add(node[c]);
+			}
+		}
+		
+		int X = Integer.parseInt(br.readLine()); // 제거할 노드
+		
+		node[X].parent.child.remove(node[X]); // 제거할 노드의 부모에게 있는 자식 명단에서 X를 제거한다.
+		
+		if(root.child.size() == 0) {
+			System.out.println(0); // root의 자식이 없을 때는 leaf가 0개 이다.
+		}
+		else {
+			int answer = getLeaf(root);
+			System.out.println(answer);
+		}
+		
+	} // end of Main
+	
+	static int getLeaf(Node root) {
+		int ret = 0;
+		
+		if(root.child.size() == 0) return 1; // 자신이 leaf면 1 반환
+		
+		for (Node node : root.child) {
+			ret += getLeaf(node); // 자기 자식들에 대해서 getLeaf를 반복한다
+		}
+		return ret;
+	}
+	
+}// end of class
+
+class Node{
+	int value;
+	Node parent; // 부모 노드
+	List<Node> child = new ArrayList<Node>(); // 자식 노드들
+	
+	public Node(int value, Node parent) {
+		super();
+		this.value = value;
+		this.parent = parent;
+	}
+}
