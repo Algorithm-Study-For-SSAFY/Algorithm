@@ -1,0 +1,61 @@
+
+//Main_백준_1996_프린터큐
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	
+	public static void main(String[] args) throws Exception {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		int T = Integer.parseInt(br.readLine());
+		
+		for (int testCase = 1; testCase <= T; testCase++) {
+			st = new StringTokenizer(br.readLine(), " ");			
+			int N = Integer.parseInt(st.nextToken());
+			int M = Integer.parseInt(st.nextToken());
+			int[] arr = new int[N];
+			st = new StringTokenizer(br.readLine(), " ");
+			for (int i = 0; i < N; i++) {
+				arr[i] = Integer.parseInt(st.nextToken());
+			}
+			
+			int idx = 0;
+			int cnt = 0;
+			// 중요도가 같은 값들을 제거한다.
+			Loop:for (int impr = 9; impr >= 1; impr--) {
+				
+				int tempIdx = idx;
+				
+				// idx ~ N-1 , 0 ~ idx를 순환하면서 프린트한다.
+				// idx에는 impr+1이 가장 마지막으로 프린트된 문서의 인덱스가 저장된다.
+				// 문서가 인쇄 될때마다 cnt++ 된다.
+				// M번째 문서가 인쇄되면 값을 저장하고 for문을 빠져나온다. 
+				for (int i = idx; i <N ; i++) {
+					if(impr == arr[i]) {
+						tempIdx = i;
+						cnt++;
+						if(i == M) break Loop;
+					}
+				}
+				for (int i = 0; i < idx; i++) {
+					if(impr == arr[i]) {
+						tempIdx = i;
+						cnt++;
+						if(i == M) break Loop;
+					}
+				}
+				idx = tempIdx;
+			}
+			sb.append(cnt).append("\n");
+		}
+		
+		System.out.println(sb);
+		
+	}
+	
+	
+}
