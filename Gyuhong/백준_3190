@@ -1,0 +1,104 @@
+
+//Main_백준_14465_소가 길을 건너간 이유5_
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	
+	static int N;
+	static int[][] map;
+	static int[][] order;
+	static int dir = 1;
+	static int headX = 0;
+	static int headY = 0;
+	static int tailX = 0;
+	static int tailY = 0;
+	static int time = 0;
+	
+	static Queue<Integer> snakeX = new LinkedList<Integer>();
+	static Queue<Integer> snakeY = new LinkedList<Integer>();
+	
+	static int nextOrder = 0;
+	
+	static int[] dirX = {0,1,0,-1};
+	static int[] dirY = {-1,0,1,0};
+	
+	public static void main(String[] args) throws Exception {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		N = Integer.parseInt(br.readLine()); // 보드의 크기
+		int K = Integer.parseInt(br.readLine()); // 사과의 갯수
+		map = new int[N][N]; // 사과는 1
+		map[0][0] = 2;
+		for (int i = 0; i < K; i++) {
+			st = new StringTokenizer(br.readLine());
+			map[Integer.parseInt(st.nextToken()) - 1][Integer.parseInt(st.nextToken()) - 1] = 1;
+		}
+		
+		int L = Integer.parseInt(br.readLine()); // 방향 변환 횟수
+		order = new int[L+1][2];
+		
+		for (int i = 0; i < L; i++) {
+			st = new StringTokenizer(br.readLine());
+			order[i][0] = Integer.parseInt(st.nextToken());
+			order[i][1] = st.nextToken().charAt(0) == 'L' ? 0 : 1; // left면 0 , right 면 1
+		}
+		
+		snakeX.offer(0);
+		snakeY.offer(0);
+		
+		while(move());
+		
+		System.out.println(time);
+	}
+	
+	static boolean move() {
+		
+		time++;
+		
+		// 다음 칸이 벽이면 끝
+		if(headX+dirX[dir] < 0  || headX+dirX[dir] >= N || headY+dirY[dir] < 0 || headY+dirY[dir] >= N) {
+			return false;
+		}
+
+		// 다음 칸이 몸이면 끝
+		if(map[headY+dirY[dir]][headX+dirX[dir]] == 2) {
+			return false;
+		}
+		
+		// 다음 칸이 이제 현재 칸임
+		// snake 큐에 집어넣고, 맵에도 표현 해줌
+		headX = headX+dirX[dir];
+		headY = headY+dirY[dir];
+		snakeX.offer(headX);
+		snakeY.offer(headY);
+		map[headY][headX] = 2;
+		
+		// 다음 칸이 사과가 아니면 꼬리가 없어진다.
+		if(map[headY][headX] == 0) {
+			map[tailY][tailX] = 0;
+			snakeX.poll();
+			snakeY.poll();
+			tailX = snakeX.peek();
+			tailY = snakeY.peek();
+		}
+		
+		// 방향전환 할꺼면 하자
+		if(order[nextOrder][0] == time) {
+			turn(order[nextOrder][1]);
+			nextOrder++;
+		}
+		
+		return true;
+	}
+	
+	// 방향전환하는 메서드
+	static void turn(int right) {
+		if(right == 1) dir = dir == 3 ? 0 : dir+1;
+		else  dir = dir == 0 ? 3 : dir-1;
+	}
+	
+}
