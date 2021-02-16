@@ -50,3 +50,6 @@ public class Main_1946 {
 		}
 	}
 }
+
+// 저는 배열로 풀었는데, comparable interface로 정렬한게 인상적이네요 ! 
+// 깔끔한 코드 bb ! 
