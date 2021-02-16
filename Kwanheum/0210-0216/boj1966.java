@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+//
 public class boj1966 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		//중요도가 높은 문서 순서대로 출력된다.
