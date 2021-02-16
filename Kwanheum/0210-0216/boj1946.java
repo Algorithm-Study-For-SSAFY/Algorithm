@@ -70,3 +70,6 @@ public class boj1946 {
 		}
 	}
 }
+
+//저는 solution 1처럼 class의 comparable interface 사용해서 정렬해준뒤에 구해줬는데
+//순위가 유일하니까 배열에 넣어주는 방법 좋은것 같아요 ~! 
