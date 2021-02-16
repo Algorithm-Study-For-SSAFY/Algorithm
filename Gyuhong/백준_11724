@@ -1,0 +1,63 @@
+//Main_백준_2229_조 짜기_
+
+import java.io.*;
+import java.util.*;
+
+public class Main_11724_트리의부모찾기 {
+	
+	
+	public static void main(String[] args) throws Exception {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		int N = Integer.parseInt(br.readLine());
+		Node[] node = new Node[N];
+		
+		for (int i = 0; i < node.length; i++) {
+			node[i] = new Node(i);
+		}
+		
+		for (int i = 0; i < N-1; i++) {
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken()) - 1;
+			int b = Integer.parseInt(st.nextToken()) - 1;
+			
+			node[a].connect.add(node[b]);
+			node[b].connect.add(node[a]);
+		}
+		
+		findParent(node[0], -1);
+		
+		for (int i = 1; i < node.length; i++) {
+			System.out.println(node[i].parent + 1);
+		}
+		
+	} // end of Main
+	
+	
+	// 부모찾는 메서드
+	static void findParent(Node node, int parent) {
+		
+		// root 빼고, connect에 부모도 있을 거니까 부모를 제거한다. 
+		node.connect.removeIf(n -> n.value==parent);
+		// 현재 노드의 부모는 입력받은 값 parent
+		node.parent = parent;
+		// 현재 노드의 자식들에 대해서 findParent를 호출한다.
+		for (Node child : node.connect) {
+			findParent(child, node.value);
+		}
+	}
+	
+	
+}// end of class
+
+class Node{
+	int value; // 노드의 값
+	List<Node> connect = new LinkedList<Node>(); // 노드와 연결된 노드들의 리스트(자식, 부모)
+	int parent; // 노드의 부모
+	
+	Node(int i){
+		value = i;
+	}
+}
