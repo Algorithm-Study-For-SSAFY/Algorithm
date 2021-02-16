@@ -1,0 +1,67 @@
+//Main_백준_1520_내리막 길_
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	
+	public static void main(String[] args) throws Exception {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+		int T = Integer.parseInt(br.readLine());
+		
+		
+		for (int testCase = 0; testCase < T; testCase++) {
+			
+			int N = Integer.parseInt(br.readLine());
+			Applicant app[] = new Applicant[N];
+			for (int i = 0; i < N; i++) {
+				st = new StringTokenizer(br.readLine());
+				app[i] = new Applicant(Integer.parseInt(st.nextToken()),Integer.parseInt(st.nextToken()));
+			}
+			
+			// 서류 성적으로 지원자를 정렬
+			Arrays.sort(app, (o1, o2) -> o1.paper - o2.paper);
+			
+			
+			int cnt = N;
+			
+			// 서류 성적이 높은 사람부터 반복문을 돌려서
+			// 앞사람 중에서 가장 인터뷰 점수가 높은 사람보다 인터뷰 성적이 낮으면 컷!
+			// cnt가 1 작아진다.
+			int min = Integer.MAX_VALUE;
+			for (int i = 0; i < N; i++) {	
+				if(app[i].interview > min) {
+					cnt--;
+				}
+				else {
+					min = app[i].interview;
+				}
+			}
+			
+			
+			sb.append(cnt).append("\n");
+		}
+		
+		System.out.println(sb);
+		
+		
+		
+	} // end of Main
+	
+	
+	
+}// end of class
+
+class Applicant{
+	int paper;
+	int interview;
+	public Applicant(int paper, int interview) {
+		super();
+		this.paper = paper;
+		this.interview = interview;
+	}
+	
+}
