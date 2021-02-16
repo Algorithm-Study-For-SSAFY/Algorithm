@@ -1,0 +1,72 @@
+//Main_백준_1520_내리막 길_
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	
+	static int N;
+	static int M;
+	static int[][] map;
+	
+	static int[] dirX = {0,1,0,-1}; 
+	static int[] dirY = {-1,0,1,0};
+
+	// 메모이제이션용 배열
+	static int[][] memo;
+	
+	public static void main(String[] args) throws Exception {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		
+		map = new int[N][M];
+		memo = new int[N][M];
+		
+		
+		for (int i = 0; i < N; i++) {
+			st = new StringTokenizer(br.readLine());
+			for (int j = 0; j < M; j++) {
+				map[i][j] = Integer.parseInt(st.nextToken());
+				memo[i][j] = -1; // 모든 칸을 -1로 초기화 한다.
+			}
+		}
+		
+		
+		
+		System.out.println(DFS(0,0));
+		
+	} // end of Main
+	
+	static int DFS(int y, int x) {
+		
+		// 이미 경험해 본 길이면 memo에 저장된 값을 반환
+		if(memo[y][x] != -1) {
+			return memo[y][x];
+		}
+		
+		// 도착하면 1 반환
+		if(y == N-1 && x == M-1) {
+			return 1;
+		}
+		
+		// 상하좌우 4길을 갔을 때 결과를 모두 더해서 반환할 꺼임
+		int sum = 0;
+		for (int i = 0; i < 4; i++) {
+			if(x+dirX[i] >= 0 && x + dirX[i] < M && y + dirY[i] >= 0 && y + dirY[i] < N) {
+				if(map[y+dirY[i]][x+dirX[i]] < map[y][x]) {
+					sum += DFS(y+dirY[i], x+dirX[i]);
+				}
+			}
+		}
+		
+		// 다 구해왔으면 memo에 저장해놓는다.
+		memo[y][x] = sum;
+		return sum;
+	}
+	
+}// end of class
+
+
