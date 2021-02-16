@@ -75,3 +75,5 @@ public class boj3584 {
 		}//test case
 	}
 }
+
+//집단 지성의 힘,,, !!! 감사합니다 허허
