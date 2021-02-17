@@ -23,11 +23,10 @@ public class 백준_1966_프린터큐 {
  
 			int count = 0;
 			
-			while (!q.isEmpty()) {	// 한 케이스에 대한 반복문
+			Loop: while (!q.isEmpty()) {	// 한 케이스에 대한 반복문
 				
 				int[] front = q.poll();	// 가장 첫 원소
-				boolean isMax = true;	// front 원소가 가장 큰 원소인지를 판단하는 변수
-				
+
 				// 큐에 남아있는 원소들과 중요도를 비교 
 				for(int i = 0; i < q.size(); i++) {
 					
@@ -39,18 +38,10 @@ public class 백준_1966_프린터큐 {
 						for(int j = 0; j < i; j++) {
 							q.offer(q.poll());
 						}
-						
-						// front원소가 가장 큰 원소가 아니였으므로 false를 하고 탐색을 마침
-						isMax = false;
-						break;
+						continue Loop;
 					}
 				}
-				
-				// front 원소가 가장 큰 원소가 X -> 다음 반복문으로
-				if(isMax == false) {
-					continue;
-				}
-				
+
 				// front 원소가 가장 큰 원소였으므로 해당 원소 출력 
 				count++;
 				if(front[0] == M) {	// 찾고자 하는 문서라면 해당 테스트케이스 종료
