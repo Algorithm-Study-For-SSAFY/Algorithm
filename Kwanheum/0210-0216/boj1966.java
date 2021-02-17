@@ -73,3 +73,7 @@ class word implements Comparable<word>{
 		return -(this.imp - o.imp); // 내림차순
 	}
 }
+
+
+//저는 아직 priorityQueue를 적용해서 문제를 풀어본 적은 없는데 offer만 하면 자동으로 내림차순으로 정렬되어 나오는건가요? 신기하네요!
+//좋은 방법인 것 같아요~!!
