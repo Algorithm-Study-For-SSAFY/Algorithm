@@ -48,3 +48,7 @@ public class boj11725 {
 		System.out.println(sb);
 	}
 }
+
+
+//여기에는 get 쓸 때 int로 형변환 시켜주셨네요..^^
+//저는 DFS로 풀었다는 것 외에 똑같습니다 ~~
