@@ -1,0 +1,37 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+ 
+public class Solution {
+    private static int[] alpabet = {1,2,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0};
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int TC = Integer.parseInt(br.readLine().trim());
+        StringTokenizer st;
+        newTest: for (int testCase = 1; testCase <= TC; testCase++) {
+            
+            st = new StringTokenizer(br.readLine());
+            
+            String a = st.nextToken();
+            String b = st.nextToken();
+            
+            if(a.length() != b.length()) {
+            	System.out.println("#" + testCase + " DIFF");
+            	continue;
+            }
+            
+            for (int i = 0; i < a.length(); i++) {
+            	if(alpabet[a.charAt(i) - 'A'] == alpabet[b.charAt(i) - 'A']) continue;
+            	
+            	System.out.println("#" + testCase + " DIFF");
+            	continue newTest;
+			}
+            
+            
+            System.out.println("#" + testCase + " SAME");
+            
+            
+        } // end of for testCase
+    } // end of main
+} // end of class
