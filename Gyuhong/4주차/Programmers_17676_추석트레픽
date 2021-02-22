@@ -1,0 +1,71 @@
+class Solution {
+    public int solution(String[] lines) {
+        
+    	int N = lines.length;
+    	
+    	int[] hours = new int[N]; // 끝나는 시간[시]
+    	int[] mins = new int[N]; // 끝나는 시간[분]
+    	double[] secs = new double[N]; // 끝나는 시간[초]
+    	double[] times = new double[N]; // 실행 시간[초]
+    	
+    	double[] startTimes = new double[N]; // 시작 시간
+    	double[] finishTimes = new double[N]; // 종료 시간
+    	
+    	StringTokenizer st1, st2;
+    	
+    	
+    	for (int i = 0; i < N; i++) {
+    		st1 = new StringTokenizer(lines[i]);
+    		st1.nextToken();
+    		
+    		st2 = new StringTokenizer(st1.nextToken(), ":");
+    		hours[i] = Integer.parseInt(st2.nextToken());
+    		mins[i] = Integer.parseInt(st2.nextToken());
+    		secs[i] = Double.parseDouble(st2.nextToken());
+    		times[i] = Double.parseDouble(st1.nextToken().replace('s', ' '));
+    		
+        // 시작시간과 종료시간을 초 단위로 나타낸다.
+    		finishTimes[i] = hours[i] * 3600 + mins[i] * 60 + secs[i];
+    		startTimes[i] = finishTimes[i] - times[i] +0.001;
+    		
+        // 1초 단위의 구간 검색을 하는 것은
+        // 종료시간을 0.999 만큼 늘리는 것과 같은 효과를 갖는다.
+    		finishTimes[i] += 0.999;
+    		
+        // 부동 소수점 연산에 의해 두 Times의 값이 틀어졌을 수도 있다.
+        // 반올림 연산을 해주어서 소수점 3자리 수로 만든다.
+        startTimes[i] = (double)Math.round(startTimes[i] * 1000)/1000;
+    		finishTimes[i] = (double)Math.round(finishTimes[i] * 1000)/1000;
+    		
+		  }
+
+      // 시작시간과 종료시간을 오름차순으로 정렬한다.
+    	Arrays.sort(startTimes);
+    	Arrays.sort(finishTimes);
+    	
+    	// idx를 증가해가면서 비교해서
+      // startTime이 크면 cnt++ 
+      // finishTime이 크면 cnt-- 하면서 cnt의 최댓값을 찾는다.
+    	int startIdx = 0;
+    	int finishIdx = 0;
+    	int cnt = 0;
+    	int max = 0;
+    	while (true) {
+			
+    		if(startIdx == N) break;
+    		
+    		else if(startTimes[startIdx] <= finishTimes[finishIdx]) {
+    			cnt++;
+    			startIdx++;
+    		}
+    		else {
+    			cnt--;
+    			finishIdx++;
+    		}
+    		max = Math.max(cnt, max);
+		}
+    	
+    	
+        return max;
+    }
+}
