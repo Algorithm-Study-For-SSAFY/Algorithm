@@ -1,0 +1,95 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+
+public class Main {
+
+	static int moveY[] = { -1, -2, -2, -1, 1, 2, 2, 1 };
+	static int moveX[] = { -2, -1, 1, 2, 2, 1, -1, -2 };
+	static Position end;
+	static boolean[][] visited;
+
+	static int N;
+
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//		StringBuilder sb = new StringBuilder();
+		StringTokenizer st;
+
+		int T = Integer.parseInt(br.readLine());
+
+		for (int testCase = 0; testCase < T; testCase++) {
+
+			N = Integer.parseInt(br.readLine());
+
+			st = new StringTokenizer(br.readLine());
+			int x = Integer.parseInt(st.nextToken());
+			int y = Integer.parseInt(st.nextToken());
+			Position start = new Position(y, x, 0);
+
+			st = new StringTokenizer(br.readLine());
+			x = Integer.parseInt(st.nextToken());
+			y = Integer.parseInt(st.nextToken());
+			end = new Position(y, x, 0);
+
+			Queue<Position> q = new LinkedList<Position>();
+			q.add(start);
+
+			visited = new boolean[N][N];
+
+			while (!move(q)) {
+			}
+
+		}
+
+	}
+
+	static boolean move(Queue<Position> q) {
+		Position p = q.poll();
+
+		if (p.equals(end)) {
+			System.out.println(p.cnt);
+			return true;
+		}
+
+		Position temp;
+
+		for (int i = 0; i < 8; i++) {
+
+			if (p.x + moveX[i] < 0 || p.x + moveX[i] >= N || p.y + moveY[i] < 0 || p.y + moveY[i] >= N)
+				continue;
+
+			temp = new Position(p.y + moveY[i],p.x + moveX[i], p.cnt + 1);
+
+			if (!visited[temp.y][temp.x]) {
+				visited[temp.y][temp.x] = true;
+				q.offer(temp);
+			}
+
+		}
+
+		return false;
+
+	}
+}
+
+class Position {
+	int y;
+	int x;
+	int cnt;
+
+	public Position(int y, int x, int cnt) {
+		super();
+		this.y = y;
+		this.x = x;
+		this.cnt = cnt;
+	}
+
+	boolean equals(Position p) {
+		if (this.x == p.x && this.y == p.y)
+			return true;
+		return false;
+	}
+}
