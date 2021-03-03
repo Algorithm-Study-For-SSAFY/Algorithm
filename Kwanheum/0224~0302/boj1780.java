@@ -65,3 +65,11 @@ public class boj1780 {
 		return true;
 	}
 }
+
+// static void divide(int row, int col, int size){
+// 		for(int i=0; i<3; i++){
+// 			for(int j=0; j<3; j++){
+// 				func(row+size*i/3, col+size*i/3, size/3);
+// 		}
+// 	}
+// } //이부분 for문으로 정리한것 외에는 똑같이 푼 것 같아요 ~! 깔끔합니당
