@@ -56,3 +56,9 @@ public class Main_백준_9205_맥주마시면서걸어가기 {
 		} // end of tc
 	}// end of main
 } // end of class
+
+/* 관흠 리뷰
+ * 
+ *  저는 DFS형태로 했는데 도경님은 BFS형태로 하셨네요! 깔끔합니다~
+ * 
+ * */
