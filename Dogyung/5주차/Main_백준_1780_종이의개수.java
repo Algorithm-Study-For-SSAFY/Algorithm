@@ -51,3 +51,9 @@ public class Main_백준_1780_종이의개수 {
 	}
 	
 } // end of class
+
+/* 관흠 리뷰
+ * 
+ *  깔끔합니다!
+ * 
+ * */
