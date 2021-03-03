@@ -73,3 +73,11 @@ public class Solution_SWEA_7272_안경이없어 {
 		System.out.println(sb);
 	} // end of main
 }// end of class
+
+/* 관흠 리뷰:
+ * 
+ *  저는 String에서 contains 함수를 매번 불러 오는 방법으로 진행했는데
+ *  문자열에 해당하는 값을 설정해두고 진행하는 이 방법도 깔끔하고 좋은것 같아요 !
+ *  
+ * 
+ * */
