@@ -1,4 +1,4 @@
-package algo_study_7w;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
