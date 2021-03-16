@@ -12,7 +12,7 @@ public class boj1759 {
 	private static int L;
 	private static int C;
 	private static char[] arr;
-	private static List<String> answer;
+	private static StringBuilder sb;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer stk = new StringTokenizer(br.readLine());
@@ -24,19 +24,15 @@ public class boj1759 {
 			arr[i] = stk.nextToken().charAt(0);
 		}
 		Arrays.sort(arr);
-		answer = new LinkedList<>();
+		sb = new StringBuilder();
 		func(0, 0, 0, "");
-		StringBuilder sb = new StringBuilder();
-		for(int i=0; i<answer.size();i++) {
-			sb.append(answer.get(i)).append("\n");
-		}
 		System.out.println(sb);
 	}//main
 	
 	static void func(int cnt, int m, int j, String pw) {
 		if( m+j == L) {
 			if(m>=1 && j>=2) {
-				answer.add(pw);
+				sb.append(pw).append("\n");
 			}
 			return;
 		}
