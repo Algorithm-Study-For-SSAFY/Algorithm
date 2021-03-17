@@ -30,6 +30,7 @@ public class swea4008 {
 			for(int i=0; i<N; i++) {
 				arr[i] = Integer.parseInt(stk.nextToken());
 			}
+			
 			order = new int[N-1];
 			answer_max = Integer.MIN_VALUE;
 			answer_min = Integer.MAX_VALUE;
