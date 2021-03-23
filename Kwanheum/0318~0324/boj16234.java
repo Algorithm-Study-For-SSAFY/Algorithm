@@ -57,14 +57,6 @@ public class boj16234 {
 				}
 			}
 			
-			/*
-			
-			for(int i=0; i<N; i++) {
-				for(int j=0;j<N; j++) {
-					System.out.print(pop[i][j]+" ");
-				}
-			System.out.println();	
-			}*/
 			
 			if( move_chk ) {
 				move++;
