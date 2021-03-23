@@ -37,9 +37,7 @@ public class SWEA_1486_장훈이의높은선반 {
 			return;
 		}
 
-		//v[i] = true;
 		subset(cnt + 1, sum + p[cnt]);
-		//v[i] = false;
 		subset(cnt + 1, sum);
 	}
 
