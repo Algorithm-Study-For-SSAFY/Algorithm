@@ -53,8 +53,6 @@ public class boj1504 {
 		b = dist[1][v2] + dist[v2][v1] + dist[v1][N];
 		long answer;
 		if(a>=max_val && b>=max_val) answer=  -1;
-		else if(a>=max_val) answer = b;
-		else if(b>=max_val) answer = a;
 		else {
 			answer = Math.min(a, b);
 		}
