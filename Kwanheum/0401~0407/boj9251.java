@@ -10,7 +10,7 @@ public class boj9251 {
 		
 		int a_len = a.length();
 		int b_len = b.length();
-		int[][] lcs = new int[a_len+1][b_len+1];
+		int[][] lcs = new int[b_len+1][a_len+1];
 		for(int i=0; i<a_len; i++) {
 			if(a.charAt(i) == b.charAt(0)) {
 				lcs[1][i+1] = 1;
@@ -59,7 +59,7 @@ public class boj9251 {
 		}
 		System.out.println(result);*/
 		
-		System.out.println(lcs[a_len][b_len]);
+		System.out.println(lcs[b_len][a_len]);
 		
 		
 		
