@@ -1,4 +1,4 @@
-## Algorithm Study💻   조관도새동
+## Algorithm Study💻   규관도새동
 
 #### 멤버 : 박새음, 오도경, 이동희 , 조규홍, 조관흠 
 
